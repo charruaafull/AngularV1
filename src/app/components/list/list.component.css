@@ -1,0 +1,4 @@
+/* css only solution */
+[class*="col-"]:not(:last-child){
+    margin-bottom: 15px;
+}

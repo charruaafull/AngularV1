@@ -1,0 +1,28 @@
+<div class="container">
+    <form #frmLogin="ngForm" (ngSubmit)="onSubmit()">
+        <div class="card">
+            <div class="card-header">
+                Ingresar
+            </div>
+            <div class="card-body">
+                <div *ngIf="this.alertError" class="alert alert-warning">
+                    {{alertError}}
+                </div>
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" #usuario="ngModel" [(ngModel)]="login.usuario" class="form-control" id="usuario"
+                           name="usuario">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="text" #password="ngModel" [(ngModel)]="login.password" class="form-control"
+                           id="password"
+                           name="password">
+                </div>
+            </div>
+            <div class="card-footer">
+                <input class="btn btn-info btn-block" type="submit" value="Ingresar">
+            </div>
+        </div>
+    </form>
+</div>
