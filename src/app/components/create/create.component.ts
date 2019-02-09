@@ -3,6 +3,7 @@ import {Users} from "../../models/users";
 import {AngularFireDatabase} from "angularfire2/database";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UsuariosService} from "../../usuarios.service";
+import {ToastrManager} from "ng6-toastr-notifications";
 
 @Component({
     selector: 'app-create',
@@ -18,6 +19,7 @@ export class CreateComponent implements OnInit {
 
     constructor(private db: AngularFireDatabase,
                 private formBuilder: FormBuilder,
+                public toastr: ToastrManager,
                 private usuarioService: UsuariosService) {
         this.usuario = new Users('', '');
     }
@@ -44,8 +46,10 @@ export class CreateComponent implements OnInit {
         } else {
             if (this.id_editar.key) {
                 this.usuarioService.editarUsuario(this.id_editar.key, this.usuario);
+                this.toastr.successToastr('Editado satisfactoriamente', 'Success!');
             } else {
                 this.usuarioService.crearUsuario(this.usuario);
+                this.toastr.successToastr('Agregado satisfactoriamente', 'Success!');
             }
             this.id_editar = '';
             this.usuario = new Users('', '');

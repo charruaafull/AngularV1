@@ -7,17 +7,24 @@ import {ListComponent} from './components/list/list.component';
 import {RouterModule, Routes} from "@angular/router";
 import {CreateComponent} from './components/create/create.component';
 import {FormsModule} from "@angular/forms";
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabase} from "angularfire2/database";
-import {AngularFireStorageModule } from 'angularfire2/storage';
-import { LoginComponent } from './components/login/login.component';
+import {AngularFireStorageModule} from 'angularfire2/storage';
+import {LoginComponent} from './components/login/login.component';
+
 import {UsuariosService} from "./usuarios.service";
+import {ProductosService} from "./services/productos.service";
+
+import {ToastrModule} from "ng6-toastr-notifications";
+import {HttpModule} from '@angular/http';
+import {ProductosComponent} from './components/productos/productos.component';
 
 const routes: Routes = [
     {path: 'list', component: ListComponent},
-    {path: '', redirectTo: '/list', pathMatch: 'full'} //Esto redirecciona automaticamente a la ruta
+    {path: 'productos', component: ProductosComponent},
+    {path: '', redirectTo: '/productos', pathMatch: 'full'} //Esto redirecciona automaticamente a la ruta
 ];
 
 @NgModule({
@@ -25,13 +32,16 @@ const routes: Routes = [
         AppComponent,
         ListComponent,
         CreateComponent,
-        LoginComponent
+        LoginComponent,
+        ProductosComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+        HttpModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
+        ToastrModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
         AngularFireModule.initializeApp({
@@ -44,7 +54,7 @@ const routes: Routes = [
         }),
         AngularFireStorageModule
     ],
-    providers: [AngularFireDatabase,UsuariosService],
+    providers: [AngularFireDatabase, UsuariosService,ProductosService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
