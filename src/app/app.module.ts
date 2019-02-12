@@ -21,6 +21,8 @@ import {ToastrModule} from "ng6-toastr-notifications";
 import {HttpModule} from '@angular/http';
 import {ProductosComponent} from './components/productos/productos.component';
 
+import {DataTableModule} from "angular2-datatable";
+
 const routes: Routes = [
     {path: 'list', component: ListComponent},
     {path: 'productos', component: ProductosComponent},
@@ -43,6 +45,7 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         ToastrModule.forRoot(),
         FormsModule,
+        DataTableModule,
         ReactiveFormsModule,
         AngularFireModule.initializeApp({
             apiKey: "AIzaSyDIP-M-DhoEe04ErimGabxUosytkeXIzWc",

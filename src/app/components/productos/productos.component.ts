@@ -4,6 +4,7 @@ import {Observable} from "rxjs/index";
 import {Productos} from "../../models/productos";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrManager} from "ng6-toastr-notifications";
+import {Http} from "@angular/http";
 
 @Component({
     selector: 'app-productos',
@@ -15,8 +16,14 @@ export class ProductosComponent implements OnInit {
     public producto: Productos;
     public productos;
     public id_editar: String = '';
+    public datos: any[];
+    public filterQuery = "";
+    public rowsOnPage = 5;
+    public sortBy = "email";
+    public sortOrder = "asc";
 
     constructor(private productosService: ProductosService,
+                private _http: Http,
                 public toastr: ToastrManager,) {
         this.producto = new Productos('', null, null, null);
         this.getProductos();
@@ -24,7 +31,7 @@ export class ProductosComponent implements OnInit {
 
     getProductos() {
         var userObservable = this.productosService.getProductos().subscribe(
-            res => this.productos = res
+            res => this.datos = res
         );
     }
 
@@ -71,7 +78,12 @@ export class ProductosComponent implements OnInit {
     }
 
     ngOnInit() {
-
+      /*  this._http.get("assets/data.json")
+            .subscribe((data) => {
+                setTimeout(() => {
+                    this.datos = data.json();
+                }, 2000);
+            }); */
     }
 
 }
