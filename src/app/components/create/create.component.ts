@@ -35,8 +35,7 @@ export class CreateComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            id: ['', [Validators.required, Validators.min(1)]],
-            name: ['', [Validators.required, Validators.minLength(1)]],
+            name: ['', [Validators.required, Validators.minLength(5)]],
         });
     }
 

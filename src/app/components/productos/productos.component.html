@@ -1,54 +1,148 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <table>
-                <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Stock</th>
-                    <th>Precio</th>
-                    <th>Acc</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let producto of productos">
-                    <td>{{producto.name}}</td>
-                    <td>{{producto.stock}}</td>
-                    <td>{{producto.price}}</td>
-                    <td><button (click)="editar(producto._id);">Editar</button></td>
-                </tr>
-                </tbody>
-            </table>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
+            </div>
+            <div class="card-body col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-striped" [mfData]="productos" #mf="mfDataTable" [mfRowsOnPage]="10">
+                        <thead>
+                        <tr>
+                            <th style="width: 20%">
+                                <mfDefaultSorter by="code">Cód.</mfDefaultSorter>
+                            </th>
+                            <th style="width: 40%">
+                                <mfDefaultSorter by="name">Nombre</mfDefaultSorter>
+                            </th>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="stock">Stock</mfDefaultSorter>
+                            </th>
+                            <th style="width: 20%">
+                                <mfDefaultSorter by="price">Precio</mfDefaultSorter>
+                            </th>
+                            <th style="width: 10%">
+                                <mfDefaultSorter by="name">Acc.</mfDefaultSorter>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let producto of mf.data">
+                            <td>{{producto.code}}</td>
+                            <td>{{producto.name}}</td>
+                            <td>{{producto.stock}}</td>
+                            <td>{{producto.price}}</td>
+                            <td>
+                                <i class="fa fa-edit" (click)="editar(producto._id);"></i>
+                                <i class="fa fa-trash" (click)="deleteProducto(producto._id, producto.name);"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[10]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    <!--<table class="table table-bordered dataTable">
+                        <thead>
+                        <tr>
+                            <th>Cód.</th>
+                            <th>Producto</th>
+                            <th>Stock</th>
+                            <th>Precio</th>
+                            <th>Acc</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let producto of productos">
+                            <td>{{producto.code}}</td>
+                            <td>{{producto.name}}</td>
+                            <td>{{producto.stock}}</td>
+                            <td>{{producto.price}}</td>
+                            <td>
+                                <i class="fa fa-edit" (click)="editar(producto._id);"></i>
+                                <i class="fa fa-trash" (click)="deleteProducto(producto._id, producto.name);"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>-->
+                </div>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <form #frmProducto="ngForm" (ngSubmit)="addProducto()" class="col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <span *ngIf="id_editar != ''">Editar producto</span>
-                        <span *ngIf="id_editar == ''">Nuevo producto</span>
+    </div>
+    <div class="col-lg-6">
+        <form [formGroup]="productosForm" (ngSubmit)="addProducto()" class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h6 *ngIf="id_editar != ''" class="m-0 font-weight-bold text-primary">Editar producto</h6>
+                    <h6 *ngIf="id_editar == ''" class="m-0 font-weight-bold text-primary">Nuevo producto</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Código</label>
+                                <input type="text" formControlName="code" [(ngModel)]="producto.code"
+                                       class="form-control"
+                                       [ngClass]="{ 'is-invalid': f.code.touched && f.code.errors }"/>
+                                <div *ngIf="f.code.touched && f.code.errors" class="invalid-feedback">
+                                    <div *ngIf="f.code.errors.required">Complete este campo</div>
+                                    <div *ngIf="f.code.errors.minLength">Minimo 1 caracteres</div>
+                                    <div *ngIf="f.code.errors.errorCpf">
+                                        😢 Oh noes, this email l is already taken!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Producto</label>
-                            <input type="text" class="form-control" id="name" required
-                                   [(ngModel)]="producto.name" name="name">
-                        </div>
-                        <div class="form-group">
-                            <label>Stock</label>
-                            <input type="text" class="form-control" [(ngModel)]="producto.stock"
-                                   name="stock" id="stock">
-                        </div>
-                        <div class="form-group">
-                            <label>Precio</label>
-                            <input type="text" class="form-control" [(ngModel)]="producto.price"
-                                   name="price" id="price">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" formControlName="name" [(ngModel)]="producto.name"
+                                       class="form-control"
+                                       [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }"/>
+                                <div *ngIf="f.name.touched && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">Complete este campo</div>
+                                    <div *ngIf="f.name.errors.minLength">Minimo 3 caracteres</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <input type="submit" class="btn btn-success" value="Confirmar">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Stock</label>
+                                <input type="text" formControlName="stock" class="form-control"
+                                       [(ngModel)]="producto.stock"
+                                       [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
+                                <div *ngIf="f.stock.touched && f.stock.errors" class="invalid-feedback">
+                                    <div *ngIf="f.stock.errors.required">Complete este campo</div>
+                                    <div *ngIf="f.stock.errors.min">Mínimo 1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Precio ($)</label>
+                                <input type="text" formControlName="price" class="form-control"
+                                       [(ngModel)]="producto.price"
+                                       [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
+                                <div *ngIf="f.price.touched && f.price.errors" class="invalid-feedback">
+                                    <div *ngIf="f.price.errors.required">Complete este campo</div>
+                                    <div *ngIf="f.price.errors.min">Mínimo 1</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+                <div class="card-footer text-right">
+                    <input type="submit" class="btn btn-success" value="Confirmar">
+                </div>
+            </div>
+        </form>
     </div>
 </div>

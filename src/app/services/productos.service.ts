@@ -36,4 +36,12 @@ export class ProductosService {
         return this._http.get(this.url + 'getProducto/' + id).map(response => response.json());
     }
 
+    getCode(id) {
+        return this._http.get(this.url + 'getCode/' + id).map(response => response.json());
+    }
+
+    eliminarProducto(id) {
+        return this._http.delete(this.url + 'deleteProducto/' + id).map(response => response.json());
+    }
+
 }

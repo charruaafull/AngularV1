@@ -1,0 +1,25 @@
+[debug] [2019-02-12T14:40:48.873Z] ----------------------------------------------------------------------
+[debug] [2019-02-12T14:40:48.875Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ESG\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-02-12T14:40:48.875Z] CLI Version:   6.3.1
+[debug] [2019-02-12T14:40:48.875Z] Platform:      win32
+[debug] [2019-02-12T14:40:48.876Z] Node Version:  v8.11.3
+[debug] [2019-02-12T14:40:48.876Z] Time:          Tue Feb 12 2019 11:40:48 GMT-0300 (Hora estándar de Argentina)
+[debug] [2019-02-12T14:40:48.877Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-12T14:40:48.887Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-12T14:40:48.888Z] > authorizing via signed-in user
+[debug] [2019-02-12T14:40:48.888Z] [iam] checking project dbangular-8e1a7 for permissions ["firebase.projects.get"]
+[debug] [2019-02-12T14:40:48.890Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/dbangular-8e1a7:testIamPermissions  
+
+[debug] [2019-02-12T14:40:50.165Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-12T14:40:50.168Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/dbangular-8e1a7  
+ 
+[debug] [2019-02-12T14:40:51.300Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\ESG\Desktop\angular\catalogo'...
+[info] 
+[debug] [2019-02-12T14:40:51.303Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/480453005017/clients/_:getWebAppConfig  
+ 
+[debug] [2019-02-12T14:40:52.702Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
