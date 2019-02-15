@@ -22,6 +22,8 @@ import {HttpModule} from '@angular/http';
 import {ProductosComponent} from './components/productos/productos.component';
 import {DataTableModule} from "angular-6-datatable";
 
+import {DataTableModule} from "angular2-datatable";
+
 const routes: Routes = [
     {path: 'list', component: ListComponent},
     {path: 'productos', component: ProductosComponent},

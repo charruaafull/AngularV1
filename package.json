@@ -22,13 +22,20 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+<<<<<<< HEAD
     "angular-6-datatable": "^0.8.0",
+=======
+    "angular2-datatable": "^0.6.0",
+>>>>>>> e20c49898f52a71acb31e63b4cafa7eb79b0fcd7
     "angularfire2": "^5.1.1",
     "core-js": "^2.5.4",
     "firebase": "^5.8.2",
     "hammerjs": "^2.0.8",
     "ng6-toastr-notifications": "^1.0.4",
+<<<<<<< HEAD
     "package.json": "^2.0.1",
+=======
+>>>>>>> e20c49898f52a71acb31e63b4cafa7eb79b0fcd7
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.4.0",
     "tslib": "^1.9.0",
