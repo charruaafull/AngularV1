@@ -37,7 +37,7 @@ export class ProductosService {
     }
 
     getCode(id) {
-        return this._http.get(this.url + 'getCode/' + id).map(response => response.json());
+        return this._http.get(this.url + 'getProducto/' + id).map(response => response.json());
     }
 
     eliminarProducto(id) {

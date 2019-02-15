@@ -99,9 +99,9 @@ export class ProductosComponent implements OnInit {
             this.productosService.getCode(control.value).subscribe(
                 res => {
                     if (!res.producto) {
-                        return true;
+                        return {errorCpf: true}
                     } else {
-                        return false;
+                        return {errorCpf: false}
                     }
                 }
             );

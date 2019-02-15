@@ -22,8 +22,6 @@ import {HttpModule} from '@angular/http';
 import {ProductosComponent} from './components/productos/productos.component';
 import {DataTableModule} from "angular-6-datatable";
 
-import {DataTableModule} from "angular2-datatable";
-
 const routes: Routes = [
     {path: 'list', component: ListComponent},
     {path: 'productos', component: ProductosComponent},
@@ -46,8 +44,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes),
         ToastrModule.forRoot(),
         FormsModule,
-        DataTableModule,
         ReactiveFormsModule,
+        DataTableModule,
         AngularFireModule.initializeApp({
             apiKey: "AIzaSyDIP-M-DhoEe04ErimGabxUosytkeXIzWc",
             authDomain: "dbangular-8e1a7.firebaseapp.com",
